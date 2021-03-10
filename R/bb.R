@@ -36,7 +36,7 @@ get_bb <- function(reg, form = c("table", "bb")[2]){
     } else {
       x <- get_table() %>%
         dplyr::filter(.data$name == reg) %>%
-        dplyr::select(-name) %>%
+        dplyr::select(-.data$name) %>%
         unlist()
     }
   }

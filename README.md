@@ -72,3 +72,9 @@ ofcbb::get_bb("gom", form = "bb")
 
     ## xmin xmax ymin ymax 
     ##  -72  -63   39   46
+
+### Ancillary Functions
+
+There are also functions for making `[-180, 180]` \<-\> `[0,360]`
+longitude transformations, splitting bounding boxes and determining if a
+box straddles a particular line of longitude.

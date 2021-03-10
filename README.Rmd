@@ -48,3 +48,6 @@ Or retrieve just one as a vector
 ofcbb::get_bb("gom", form = "bb")
 ```
 
+### Ancillary Functions
+
+There are also functions for making `[-180, 180]` <-> `[0,360]` longitude transformations, splitting bounding boxes and determining if a box straddles a particular line of longitude.

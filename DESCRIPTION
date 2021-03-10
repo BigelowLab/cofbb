@@ -1,10 +1,10 @@
-Package: ofcbb
+Package: cofbb
 Type: Package
-Title: Serves Ocean Forecast Center Bounding Boxes
+Title: Serves Center for Ocean Forecasting Bounding Boxes
 Version: 0.1.0
 Author: Ben Tupper
 Maintainer: Ben Tupper <btupper@bigelow.org>
-Description: Provides bounding box services for the Ocean Forecasting Center.
+Description: Provides bounding box services for the Center for Ocean Forecasting .
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
