@@ -1,4 +1,4 @@
-ofcbb
+cofbb
 ================
 
 This R package serves the spatial bounding box definitions we use in the
@@ -14,14 +14,14 @@ Record Lab.
 
 ### Installation
 
-    remotes::install_github("BigelowLab/ofcbb")
+    remotes::install_github("BigelowLab/cofbb")
 
 ### Usage
 
 Retrieve a table of all known bounding boxes.
 
 ``` r
-ofcbb::get_table()
+cofbb::get_table()
 ```
 
     ## # A tibble: 9 x 5
@@ -40,7 +40,7 @@ ofcbb::get_table()
 Retrieve one or more regions by name as a table.
 
 ``` r
-ofcbb::get_bb(c("world", "nwa2"), form = "table")
+cofbb::get_bb(c("world", "nwa2"), form = "table")
 ```
 
     ## # A tibble: 2 x 5
@@ -53,7 +53,7 @@ Retrieve one or more regions by name as a list of vector in `[xmin,
 xmax, ymin, ymax]` order.
 
 ``` r
-ofcbb::get_bb(c("world", "nwa2"), form = "bb")
+cofbb::get_bb(c("world", "nwa2"), form = "bb")
 ```
 
     ## $world
@@ -67,7 +67,7 @@ ofcbb::get_bb(c("world", "nwa2"), form = "bb")
 Or retrieve just one as a vector
 
 ``` r
-ofcbb::get_bb("gom", form = "bb")
+cofbb::get_bb("gom", form = "bb")
 ```
 
     ## xmin xmax ymin ymax 
