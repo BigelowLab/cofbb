@@ -2,20 +2,20 @@
 % Please edit documentation in R/bb.R
 \name{get_bb}
 \alias{get_bb}
-\title{Retrieve a single bounding box as either a table or vector}
+\title{Retrieve a single bounding box as either a table, vector of sf POLYGON}
 \usage{
-get_bb(reg, form = c("table", "bb")[2])
+get_bb(reg, form = c("table", "bb", "sf")[2])
 }
 \arguments{
 \item{reg}{character, one or more named regions to retrieve.
 By default 'world'}
 
-\item{form}{character, either 'bb' or 'table'}
+\item{form}{character, either 'bb', 'table' or 'sf'}
 }
 \value{
-4-element numeric vector, or a list of 4-element vectors
-        or a table (tibble)
+4-element numeric vector, or a list of 4-element vectors,
+        a table (tibble) or sf POLYGON table
 }
 \description{
-Retrieve a single bounding box as either a table or vector
+Retrieve a single bounding box as either a table, vector of sf POLYGON
 }

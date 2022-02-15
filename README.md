@@ -6,11 +6,17 @@ Record Lab.
 
 ### Requirements
 
-  - [R v4+](https://www.r-project.org/)
+-   [R v4+](https://www.r-project.org/)
 
-  - [rlang](https://CRAN.R-project.org/package=rlang)
+-   [rlang](https://CRAN.R-project.org/package=rlang)
 
-  - [dplyr](https://CRAN.R-project.org/package=dplyr)
+-   [dplyr](https://CRAN.R-project.org/package=dplyr)
+
+-   [sf](https://CRAN.R-project.org/package=sf)
+
+### Suggested
+
+-   [leaflet](https://CRAN.R-project.org/package=leaflet)
 
 ### Installation
 
@@ -24,7 +30,7 @@ Retrieve a table of all known bounding boxes.
 cofbb::get_table()
 ```
 
-    ## # A tibble: 9 x 5
+    ## # A tibble: 9 × 5
     ##   name       xmin  xmax  ymin  ymax
     ##   <chr>     <dbl> <dbl> <dbl> <dbl>
     ## 1 maine     -71.1 -67    43    47.5
@@ -43,14 +49,14 @@ Retrieve one or more regions by name as a table.
 cofbb::get_bb(c("world", "nwa2"), form = "table")
 ```
 
-    ## # A tibble: 2 x 5
+    ## # A tibble: 2 × 5
     ##   name   xmin  xmax  ymin  ymax
     ##   <chr> <dbl> <dbl> <dbl> <dbl>
     ## 1 nwa2    -77 -42.5  36.5  56.7
     ## 2 world  -180 180   -90    90
 
-Retrieve one or more regions by name as a list of vector in `[xmin,
-xmax, ymin, ymax]` order.
+Retrieve one or more regions by name as a list of vector in
+`[xmin, xmax, ymin, ymax]` order.
 
 ``` r
 cofbb::get_bb(c("world", "nwa2"), form = "bb")
@@ -75,6 +81,34 @@ cofbb::get_bb("gom", form = "bb")
 
 ### Ancillary Functions
 
-There are also functions for making `[-180, 180]` \<-\> `[0,360]`
-longitude transformations, splitting bounding boxes and determining if a
-box straddles a particular line of longitude.
+There are also functions for making `[-180, 180]` \<-> `[0,360]`
+longitude transformations (`to_180BB()`, `to_360BB()`), splitting
+bounding boxes (`bb_split()`) and determining if a box straddles a
+particular line of longitude (`bb_straddles()`).
+
+### [sf](https://CRAN.R-project.org/package=sf)
+
+You can also retrieve bounding boxes as a data frame of one or more
+[sf](https://CRAN.R-project.org/package=sf) POLYGON objects.
+
+``` r
+x <- cofbb::get_bb(c("gosl", "gom", "nwa2"), form = "sf")
+x
+```
+
+    ## Simple feature collection with 3 features and 1 field
+    ## Geometry type: POLYGON
+    ## Dimension:     XY
+    ## Bounding box:  xmin: -77 ymin: 36.5 xmax: -42.5 ymax: 56.7
+    ## Geodetic CRS:  WGS 84
+    ##   name                           geom
+    ## 1 gosl POLYGON ((-67 44.4, -56.5 4...
+    ## 2  gom POLYGON ((-72 39, -63 39, -...
+    ## 3 nwa2 POLYGON ((-77 36.5, -42.5 3...
+
+If you have [leaflet](https://CRAN.R-project.org/package=leaflet)
+installed you can draw a pretty map (otherwise a boring map is drawn.)
+
+    plot_bb(x)
+
+![leaflet](inst/images/leaflet.png)

@@ -16,21 +16,22 @@ get_table <- function(){
     'world360',  0,       360,      -90,    90)
 }
 
-#' Retrieve a single bounding box as either a table or vector
+#' Retrieve a single bounding box as either a table, vector of sf POLYGON
 #'
 #' @export
 #' @param reg character, one or more named regions to retrieve.
 #'             By default 'world'
-#' @param form character, either 'bb' or 'table'
-#' @return 4-element numeric vector, or a list of 4-element vectors
-#'         or a table (tibble)
-get_bb <- function(reg, form = c("table", "bb")[2]){
+#' @param form character, either 'bb', 'table' or 'sf'
+#' @return 4-element numeric vector, or a list of 4-element vectors,
+#'         a table (tibble) or sf POLYGON table
+get_bb <- function(reg, form = c("table", "bb", "sf")[2]){
+  
   if (missing(reg)) reg <- "world"
 
   if (tolower(form[1]) == 'table'){
     x <- get_table() %>%
       dplyr::filter(.data$name %in% reg)
-  } else {
+  } else if (tolower(form[1]) == "bb"){
     if (length(reg) > 1){
       x <- sapply(reg, get_bb, form = 'bb', simplify = FALSE)
     } else {
@@ -39,10 +40,31 @@ get_bb <- function(reg, form = c("table", "bb")[2]){
         dplyr::select(-.data$name) %>%
         unlist()
     }
+  } else {
+    # must be 'sf'
+    x <- lapply(reg, 
+      function(r) {
+        b <- get_bb(r, form = 'bb')
+        sf::st_sf(name = r,
+                  geom = sf::st_sfc(bb_as_POLYGON(b), crs = 4326))
+      }) |>
+      dplyr::bind_rows()
+    
   }
   return(x)
 }
 
+#' Convert a 4 element bb vector into a polygon
+#' 
+#' @export
+#' @param x 4 element numeric bounding box
+#' @return \code{\link[sf]{POLYGON}} object
+bb_as_POLYGON <- function(x){
+  if (!inherits(x, "numeric")) stop("inpt must be 4 element numeric vector")
+  if (length(x) != 4) stop("input must have 4 elements")
+  m <- matrix(x[c(1,2,2,1,1,3,3,4,4,3)], ncol = 2)
+  sf::st_polygon(list(m))
+}
 
 #' Convert bounding box [0,360] longitudes to [-180, 180]
 #'
