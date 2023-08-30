@@ -4,16 +4,17 @@
 #' @return table of bounding boxes
 get_table <- function(){
   dplyr::tribble(
-    ~name,       ~xmin,   ~xmax,    ~ymin,  ~ymax,
-    'maine',     -71.1,   -67,      43,     47.5,
-    'gom',       -72,     -63,      39,     46,
-    'nwa',       -77,     -51.5,    37.9,   56.7,
-    'nwa2',      -77,     -42.5,    36.5,   56.7,
-    'neac',      -74,     -59.75,   41,     48.15,
-    'liac',      -74,     -59.75,   37.9,   48.15,
-    'gosl',      -67,     -56.5,    44.4,   50.5,
-    'world',     -180,    180,      -90,    90,
-    'world360',  0,       360,      -90,    90)
+    ~name,       ~xmin,   ~xmax,    ~ymin,  ~ymax,    ~longname,
+    'maine',     -71.1,   -67,      43,     47.5,     "State of Maine",
+    'gom',       -72,     -63,      39,     46,       "Gulf of Maine",
+    'nwa',       -77,     -51.5,    37.9,   56.7,     "Northwest Atlantic",
+    'nwa2',      -77,     -42.5,    36.5,   56.7,     "Northwest Atlantic 2",
+    'neac',      -74,     -59.75,   41,     48.15,    "New England and Atlantic Canada",
+    'liac',      -74,     -59.75,   37.9,   48.15,    "Long Island and Atlantic Canada",
+    'gosl',      -67,     -56.5,    44.4,   50.5,     "Gulf of St. Lawrence",
+    'world',     -180,    180,      -90,    90,       "World",
+    'world360',  0,       360,      -90,    90,       "World 360",
+    'njgb',      -74.9,   -66,    38.8,   42.6,       "New Jersey to Georges Bank")
 }
 
 #' Retrieve a single bounding box as either a table, vector of sf POLYGON
@@ -37,7 +38,7 @@ get_bb <- function(reg, form = c("table", "bb", "sf")[2]){
     } else {
       x <- get_table() %>%
         dplyr::filter(.data$name == reg) %>%
-        dplyr::select(-.data$name) %>%
+        dplyr::select(-.data$name, -.data$longname) %>%
         unlist()
     }
   } else {

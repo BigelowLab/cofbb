@@ -30,18 +30,19 @@ Retrieve a table of all known bounding boxes.
 cofbb::get_table()
 ```
 
-    ## # A tibble: 9 × 5
-    ##   name       xmin  xmax  ymin  ymax
-    ##   <chr>     <dbl> <dbl> <dbl> <dbl>
-    ## 1 maine     -71.1 -67    43    47.5
-    ## 2 gom       -72   -63    39    46  
-    ## 3 nwa       -77   -51.5  37.9  56.7
-    ## 4 nwa2      -77   -42.5  36.5  56.7
-    ## 5 neac      -74   -59.8  41    48.2
-    ## 6 liac      -74   -59.8  37.9  48.2
-    ## 7 gosl      -67   -56.5  44.4  50.5
-    ## 8 world    -180   180   -90    90  
-    ## 9 world360    0   360   -90    90
+    ## # A tibble: 10 × 6
+    ##    name       xmin  xmax  ymin  ymax longname                       
+    ##    <chr>     <dbl> <dbl> <dbl> <dbl> <chr>                          
+    ##  1 maine     -71.1 -67    43    47.5 State of Maine                 
+    ##  2 gom       -72   -63    39    46   Gulf of Maine                  
+    ##  3 nwa       -77   -51.5  37.9  56.7 Northwest Atlantic             
+    ##  4 nwa2      -77   -42.5  36.5  56.7 Northwest Atlantic 2           
+    ##  5 neac      -74   -59.8  41    48.2 New England and Atlantic Canada
+    ##  6 liac      -74   -59.8  37.9  48.2 Long Island and Atlantic Canada
+    ##  7 gosl      -67   -56.5  44.4  50.5 Gulf of St. Lawrence           
+    ##  8 world    -180   180   -90    90   World                          
+    ##  9 world360    0   360   -90    90   World 360                      
+    ## 10 njgb      -74.9 -66    38.8  42.6 New Jersey to Georges Bank
 
 Retrieve one or more regions by name as a table.
 
@@ -49,11 +50,11 @@ Retrieve one or more regions by name as a table.
 cofbb::get_bb(c("world", "nwa2"), form = "table")
 ```
 
-    ## # A tibble: 2 × 5
-    ##   name   xmin  xmax  ymin  ymax
-    ##   <chr> <dbl> <dbl> <dbl> <dbl>
-    ## 1 nwa2    -77 -42.5  36.5  56.7
-    ## 2 world  -180 180   -90    90
+    ## # A tibble: 2 × 6
+    ##   name   xmin  xmax  ymin  ymax longname            
+    ##   <chr> <dbl> <dbl> <dbl> <dbl> <chr>               
+    ## 1 nwa2    -77 -42.5  36.5  56.7 Northwest Atlantic 2
+    ## 2 world  -180 180   -90    90   World
 
 Retrieve one or more regions by name as a list of vector in
 `[xmin, xmax, ymin, ymax]` order.
@@ -81,7 +82,7 @@ cofbb::get_bb("gom", form = "bb")
 
 ### Ancillary Functions
 
-There are also functions for making `[-180, 180]` \<-> `[0,360]`
+There are also functions for making `[-180, 180]` \<-\> `[0,360]`
 longitude transformations (`to_180BB()`, `to_360BB()`), splitting
 bounding boxes (`bb_split()`) and determining if a box straddles a
 particular line of longitude (`bb_straddles()`).
