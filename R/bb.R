@@ -7,6 +7,7 @@ get_table <- function(){
     ~name,       ~xmin,   ~xmax,    ~ymin,  ~ymax,    ~longname,
     'maine',     -71.1,   -67,      43,     47.5,     "State of Maine",
     'gom',       -72,     -63,      39,     46,       "Gulf of Maine",
+    'gom_charcarodon', -74.9, -63,  38.8,   46,       "GoM for White Sharks",          
     'nwa',       -77,     -51.5,    37.9,   56.7,     "Northwest Atlantic",
     'nwa2',      -77,     -42.5,    36.5,   56.7,     "Northwest Atlantic 2",
     'neac',      -74,     -59.75,   41,     48.15,    "New England and Atlantic Canada",
