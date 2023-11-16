@@ -10,7 +10,7 @@ bb_as_POLYGON(x)
 \item{x}{4 element numeric bounding box}
 }
 \value{
-\code{\link[sf]{POLYGON}} object
+\code{POLYGON} object
 }
 \description{
 Convert a 4 element bb vector into a polygon
