@@ -15,7 +15,8 @@ get_table <- function(){
     'gosl',      -67,     -56.5,    44.4,   50.5,     "Gulf of St. Lawrence",
     'world',     -180,    180,      -90,    90,       "World",
     'world360',  0,       360,      -90,    90,       "World 360",
-    'njgb',      -74.9,   -66,    38.8,   42.6,       "New Jersey to Georges Bank")
+    'njgb',      -74.9,   -66,    38.8,   42.6,       "New Jersey to Georges Bank",
+    'nefsc_carcharodon', -74.9, -65, 38.8,  46,       "NEFSC White Shark")
 }
 
 #' Retrieve a single bounding box as either a table, vector of sf POLYGON
