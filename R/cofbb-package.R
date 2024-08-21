@@ -1,9 +1,7 @@
 #' cofbb
 #'
-#' @description Provides bounding box services for the Center for Ocean Forecasting.
-#' @docType package
+#' @description Provides bounding box services for the Tandy Center for Ocean Forecasting.
 #' @name cofbb
 #' @importFrom dplyr %>%
 #' @importFrom rlang .data
-NULL
-
+"_PACKAGE"

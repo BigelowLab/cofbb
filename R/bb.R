@@ -14,10 +14,12 @@ get_table <- function(){
     'liac',      -74,     -59.75,   37.9,   48.15,    "Long Island and Atlantic Canada",
     'gosl',      -67,     -56.5,    44.4,   50.5,     "Gulf of St. Lawrence",
     'world',     -180,    180,      -90,    90,       "World",
-    'world360',  0,       360,      -90,    90,       "World 360",
+    'world360',   0,       360,      -90,    90,       "World 360",
     'njgb',      -74.9,   -66,    38.8,   42.6,       "New Jersey to Georges Bank",
     'nefsc_carcharodon', -74.9, -65, 38.8,  46,       "NEFSC White Shark",
-    'cape_cod',  -69.23,  -70.87,   41.41,  42.23,    "Cape Cod")
+    'cape_cod',  -69.23,  -70.87,   41.41,  42.23,    "Cape Cod",
+    "cold_blob", -30,     -15,      42,     60,       "North Atalantic Cold Blob",
+    "warm_spot", -74,     -58,      36,     42,       "Warm Spot")
 }
 
 #' Retrieve a single bounding box as either a table, vector of sf POLYGON

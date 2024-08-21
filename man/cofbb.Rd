@@ -2,8 +2,9 @@
 % Please edit documentation in R/cofbb-package.R
 \docType{package}
 \name{cofbb}
+\alias{cofbb-package}
 \alias{cofbb}
 \title{cofbb}
 \description{
-Provides bounding box services for the Center for Ocean Forecasting.
+Provides bounding box services for the Tandy Center for Ocean Forecasting.
 }
