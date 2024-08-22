@@ -19,7 +19,9 @@ get_table <- function(){
     'nefsc_carcharodon', -74.9, -65, 38.8,  46,       "NEFSC White Shark",
     'cape_cod',  -69.23,  -70.87,   41.41,  42.23,    "Cape Cod",
     "cold_blob", -30,     -15,      42,     60,       "North Atalantic Cold Blob",
-    "warm_spot", -74,     -58,      36,     42,       "Warm Spot")
+    "warm_spot", -74,     -58,      36,     42,       "Warm Spot",
+    "nh",        -180,      0,      180,    90,       "Northern Hemisphere",
+    "sh",        -180,    -90,      180,     0,       "Southern Hemisphere")
 }
 
 #' Retrieve a single bounding box as either a table, vector of sf POLYGON

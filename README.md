@@ -30,7 +30,7 @@ Retrieve a table of all known bounding boxes.
 cofbb::get_table()
 ```
 
-    ## # A tibble: 15 × 6
+    ## # A tibble: 17 × 6
     ##    name                xmin  xmax  ymin  ymax longname                       
     ##    <chr>              <dbl> <dbl> <dbl> <dbl> <chr>                          
     ##  1 maine              -71.1 -67    43    47.5 State of Maine                 
@@ -47,7 +47,9 @@ cofbb::get_table()
     ## 12 nefsc_carcharodon  -74.9 -65    38.8  46   NEFSC White Shark              
     ## 13 cape_cod           -69.2 -70.9  41.4  42.2 Cape Cod                       
     ## 14 cold_blob          -30   -15    42    60   North Atalantic Cold Blob      
-    ## 15 warm_spot          -74   -58    36    42   Warm Spot
+    ## 15 warm_spot          -74   -58    36    42   Warm Spot                      
+    ## 16 nh                -180     0   180    90   Northern Hemisphere            
+    ## 17 sh                -180   -90   180     0   Southern Hemisphere
 
 Retrieve one or more regions by name as a table.
 
