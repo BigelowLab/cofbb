@@ -74,4 +74,7 @@ plot_bb(x)
 ```
 ![leaflet](inst/images/leaflet.png)
 
+# NOTE on `nwa` and `nwa2`
+
+As of 2025-03-10 `nwa` has been renamed `nwa_orig` but it is essentially deprecated.  `nwa` and `nwa2` now point to the same bounding box which modified from `nwa_orig` to accommodate Flemish Cap.  The point is, calling for `nwa` and `nwa2` is now the same thing.
 

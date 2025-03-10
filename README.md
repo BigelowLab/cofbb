@@ -123,3 +123,10 @@ installed you can draw a pretty map (otherwise a boring map is drawn.)
 <img src="inst/images/leaflet.png" alt="leaflet" />
 <figcaption aria-hidden="true">leaflet</figcaption>
 </figure>
+
+# NOTE on `nwa` and `nwa2`
+
+As of 2025-03-10 `nwa` has been renamed `nwa_orig` but it is essentially
+deprecated. `nwa` and `nwa2` now point to the same bounding box which
+modified from `nwa_orig` to accommodate Flemish Cap. The point is,
+calling for `nwa` and `nwa2` is now the same thing.
