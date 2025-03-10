@@ -45,7 +45,7 @@ get_bb <- function(reg, form = c("table", "bb", "sf")[2]){
       x <- sapply(reg, get_bb, form = 'bb', simplify = FALSE)
     } else {
       x <- get_table() %>%
-        dplyr::filter(.data$name == reg) %>%
+        dplyr::filter(.data$name %in% reg) %>%
         dplyr::select(-.data$name, -.data$longname) %>%
         unlist()
     }
