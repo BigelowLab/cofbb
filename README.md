@@ -30,26 +30,27 @@ Retrieve a table of all known bounding boxes.
 cofbb::get_table()
 ```
 
-    ## # A tibble: 17 × 6
+    ## # A tibble: 18 × 6
     ##    name                xmin  xmax  ymin  ymax longname                       
     ##    <chr>              <dbl> <dbl> <dbl> <dbl> <chr>                          
     ##  1 maine              -71.1 -67    43    47.5 State of Maine                 
     ##  2 gom                -72   -63    39    46   Gulf of Maine                  
     ##  3 gom_carcharodon    -74.9 -63    38.8  46   GoM for White Sharks           
-    ##  4 nwa                -77   -51.5  37.9  56.7 Northwest Atlantic             
-    ##  5 nwa2               -77   -42.5  36.5  56.7 Northwest Atlantic 2           
-    ##  6 neac               -74   -59.8  41    48.2 New England and Atlantic Canada
-    ##  7 liac               -74   -59.8  37.9  48.2 Long Island and Atlantic Canada
-    ##  8 gosl               -67   -56.5  44.4  50.5 Gulf of St. Lawrence           
-    ##  9 world             -180   180   -90    90   World                          
-    ## 10 world360             0   360   -90    90   World 360                      
-    ## 11 njgb               -74.9 -66    38.8  42.6 New Jersey to Georges Bank     
-    ## 12 nefsc_carcharodon  -74.9 -65    38.8  46   NEFSC White Shark              
-    ## 13 cape_cod           -69.2 -70.9  41.4  42.2 Cape Cod                       
-    ## 14 cold_blob          -30   -15    42    60   North Atalantic Cold Blob      
-    ## 15 warm_spot          -74   -58    36    42   Warm Spot                      
-    ## 16 nh                -180     0   180    90   Northern Hemisphere            
-    ## 17 sh                -180   -90   180     0   Southern Hemisphere
+    ##  4 nwa_orig           -77   -51.5  37.9  56.7 Northwest Atlantic             
+    ##  5 nwa                -77   -42.5  36.5  56.7 Northwest Atlantic 2           
+    ##  6 nwa2               -77   -42.5  36.5  56.7 Northwest Atlantic 2           
+    ##  7 neac               -74   -59.8  41    48.2 New England and Atlantic Canada
+    ##  8 liac               -74   -59.8  37.9  48.2 Long Island and Atlantic Canada
+    ##  9 gosl               -67   -56.5  44.4  50.5 Gulf of St. Lawrence           
+    ## 10 world             -180   180   -90    90   World                          
+    ## 11 world360             0   360   -90    90   World 360                      
+    ## 12 njgb               -74.9 -66    38.8  42.6 New Jersey to Georges Bank     
+    ## 13 nefsc_carcharodon  -74.9 -65    38.8  46   NEFSC White Shark              
+    ## 14 cape_cod           -69.2 -70.9  41.4  42.2 Cape Cod                       
+    ## 15 cold_blob          -30   -15    42    60   North Atalantic Cold Blob      
+    ## 16 warm_spot          -74   -58    36    42   Warm Spot                      
+    ## 17 nh                -180     0   180    90   Northern Hemisphere            
+    ## 18 sh                -180   -90   180     0   Southern Hemisphere
 
 Retrieve one or more regions by name as a table.
 

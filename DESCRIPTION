@@ -1,7 +1,7 @@
 Package: cofbb
 Type: Package
 Title: Serves Center for Ocean Forecasting Bounding Boxes
-Version: 0.1.0
+Version: 0.2.0
 Author: Ben Tupper
 Maintainer: Ben Tupper <btupper@bigelow.org>
 Description: Provides bounding box services for the Center for Ocean Forecasting .
@@ -10,6 +10,7 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   rlang,
+  readr,
   dplyr,
   sf
 Suggests:

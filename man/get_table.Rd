@@ -4,7 +4,7 @@
 \alias{get_table}
 \title{Retrieve the entire table of known bounding boxes}
 \usage{
-get_table()
+get_table(filename = system.file("bbox_lonlat.csv", package = "cofbb"))
 }
 \value{
 table of bounding boxes
