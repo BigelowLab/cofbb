@@ -1,5 +1,5 @@
 library(devtools)
-
+orig_dir = getwd()
 on.exit({
   setwd(orig_dir)
 })
@@ -12,7 +12,7 @@ if (system("whoami", intern = TRUE) == "root"){
   devtools::install(pkg_path)
 }
 
-orig_dir = getwd()
+
 setwd(pkg_path)
 ok = system(sprintf("git commit -a -m '%s'", format(Sys.time(), "%Y-%m-%dT%H:%M:%S")))
 if (ok == 0){

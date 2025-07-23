@@ -40,13 +40,13 @@ cofbb::get_table()
 Retrieve one or more regions by name as a table.
 
 ```{r get_bb_table}
-cofbb::get_bb(c("world", "nwa2"), form = "table")
+cofbb::get_bb(c("world", "chfc"), form = "table")
 ```
 
 Retrieve one or more regions by name as a list of vector in `[xmin, xmax, ymin, ymax]` order.
 
 ```{r get_bb_list}
-cofbb::get_bb(c("world", "nwa2"), form = "bb")
+cofbb::get_bb(c("world", "chfc"), form = "bb")
 ```
 
 Or retrieve just one as a vector
@@ -63,7 +63,7 @@ There are also functions for making `[-180, 180]` <-> `[0,360]` longitude transf
 You can also retrieve bounding boxes as a data frame of one or more [sf](https://CRAN.R-project.org/package=sf) POLYGON objects. 
 
 ```{r get_sf}
-x <- cofbb::get_bb(c("gosl", "gom", "nwa2"), form = "sf")
+x <- cofbb::get_bb(c("gosl", "gom", "chfc"), form = "sf")
 x
 ```
 
@@ -73,6 +73,16 @@ If you have [leaflet](https://CRAN.R-project.org/package=leaflet) installed you 
 plot_bb(x)
 ```
 ![leaflet](inst/images/leaflet.png)
+
+## Updating
+
+Pre-packaged data are stored in locally in `/mnt/s1/projects/ecocast/coredata/cofbb/bbox_lonlat.csv` and are then absorbed into the package.  Updates to the package can happen at any time.  First, edit the source data file to suit your needs.  Then run the following...
+
+```
+$ Rscript /mnt/ecocast/corecode/R/cofbb/scripts/update_package.R
+```
+
+If you do the above with `sudo` privileges then it will be installed into the system-wide R package library, otherwise it will be installed into the user R package library.
 
 # NOTE on `nwa` and `nwa2`
 
