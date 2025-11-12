@@ -18,3 +18,4 @@ cold_blob,-30,-15,42,60,North Atalantic Cold Blob
 warm_spot,-74,-58,36,42,Warm Spot
 nh,-180,0,180,90,Northern Hemisphere
 sh,-180,-90,180,0,Southern Hemisphere
+swa,0,20,-35,8,Southwest Atlantic

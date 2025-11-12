@@ -31,7 +31,7 @@ get_bb <- function(reg, form = c("table", "bb", "sf")[2]){
     x <- x |>
            dplyr::filter(.data$name %in% reg)
   } else if (tolower(form[1]) == "bb"){
-    nms = x$reg
+    nms = x$name
     x = x |>
       dplyr::rowwise() |>
       dplyr::group_map(
