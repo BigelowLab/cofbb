@@ -9,7 +9,7 @@ pkg_path = "/mnt/s1/projects/ecocast/corecode/R/cofbb"
 out_path = file.path(pkg_path, "inst/bbox_lonlat.csv")
 ok = file.copy(data_path, out_path, overwrite = TRUE)
 if (system("whoami", intern = TRUE) == "root"){
-  devtools::install(pkg_path)
+  devtools::install(pkg_path, upgrade = FALSE)
 }
 
 
