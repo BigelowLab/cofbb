@@ -22,28 +22,26 @@ get_bb <- function(reg, form = c("table", "bb", "sf")[2]){
   x = get_table()
   if ("all" %in% reg) reg = x$name
   
+ # Return one row's bb as a vector
+  as_vec = function(x){
+    c(xmin = x$xmin, ymin = x$ymin, xmax = x$xmax, ymax = x$ymax )
+  }
+  
   if (tolower(form[1]) == 'table'){
     x <- x |>
            dplyr::filter(.data$name %in% reg)
   } else if (tolower(form[1]) == "bb"){
+    nms = x$reg
     x = x |>
-      dplyr::select(-.data$name, -.data$longname) 
-    
-    #if (length(reg) > 1){
-    #  x <- sapply(reg, get_bb, form = 'bb', simplify = FALSE)
-    #} else {
-    #  x <- get_table() 
-    #  if (!("all" %in% reg)) x = x |>
-    #                             dplyr::filter(.data$name %in% reg)
-    #  x = x |>
-    #    dplyr::select(-.data$name, -.data$longname) %>%
-    #    unlist()
-    #}
+      dplyr::rowwise() |>
+      dplyr::group_map(
+        function(grp, key){
+          as_vec(grp)
+        } ) |>
+      rlang::set_names(nms)
   } else {
     # must be 'sf'
-    as_vec = function(x){
-      c(xmin = x$xmin, ymin = x$ymin, xmax = x$xmax, ymax = x$ymax )
-    }
+   
     x <- lapply(reg, 
       function(r, data = NULL) {
         b = dplyr::filter(data, name == r) |>
