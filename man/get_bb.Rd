@@ -8,7 +8,7 @@ get_bb(reg, form = c("table", "bb", "sf")[2])
 }
 \arguments{
 \item{reg}{character, one or more named regions to retrieve.
-By default 'world'}
+By default 'world'.  Use all to retrieve all known bbs.}
 
 \item{form}{character, either 'bb', 'table' or 'sf'}
 }

@@ -4,61 +4,54 @@
 #' @return table of bounding boxes
 get_table <- function(filename = system.file("bbox_lonlat.csv",
                                              package = "cofbb")){
-  readr::read_csv(filename,  show_col_types = FALSE)
-  # dplyr::tribble(
-  #   ~name,       ~xmin,   ~xmax,    ~ymin,  ~ymax,    ~longname,
-  #   'maine',     -71.1,   -67,      43,     47.5,     "State of Maine",
-  #   'gom',       -72,     -63,      39,     46,       "Gulf of Maine",
-  #   'gom_carcharodon', -74.9, -63,  38.8,   46,       "GoM for White Sharks",          
-  #   'nwa_orig',       -77,     -51.5,    37.9,   56.7,     "Northwest Atlantic",
-  #   'nwa',      -77,     -42.5,    36.5,   56.7,     "Northwest Atlantic 2",
-  #   'nwa2',      -77,     -42.5,    36.5,   56.7,     "Northwest Atlantic 2",
-  #   'neac',      -74,     -59.75,   41,     48.15,    "New England and Atlantic Canada",
-  #   'liac',      -74,     -59.75,   37.9,   48.15,    "Long Island and Atlantic Canada",
-  #   'gosl',      -67,     -56.5,    44.4,   50.5,     "Gulf of St. Lawrence",
-  #   'world',     -180,    180,      -90,    90,       "World",
-  #   'world360',   0,       360,      -90,    90,       "World 360",
-  #   'njgb',      -74.9,   -66,    38.8,   42.6,       "New Jersey to Georges Bank",
-  #   'nefsc_carcharodon', -74.9, -65, 38.8,  46,       "NEFSC White Shark",
-  #   'cape_cod',  -69.23,  -70.87,   41.41,  42.23,    "Cape Cod",
-  #   "cold_blob", -30,     -15,      42,     60,       "North Atalantic Cold Blob",
-  #   "warm_spot", -74,     -58,      36,     42,       "Warm Spot",
-  #   "nh",        -180,      0,      180,    90,       "Northern Hemisphere",
-  #   "sh",        -180,    -90,      180,     0,       "Southern Hemisphere")
+  readr::read_csv(filename, col_types = 'cnnnnc')
 }
 
 #' Retrieve a single bounding box as either a table, vector of sf POLYGON
 #'
 #' @export
 #' @param reg character, one or more named regions to retrieve.
-#'             By default 'world'
+#'             By default 'world'.  Use all to retrieve all known bbs.
 #' @param form character, either 'bb', 'table' or 'sf'
 #' @return 4-element numeric vector, or a list of 4-element vectors,
 #'         a table (tibble) or sf POLYGON table
 get_bb <- function(reg, form = c("table", "bb", "sf")[2]){
   
   if (missing(reg)) reg <- "world"
-
+  reg = tolower(reg)
+  x = get_table()
+  if ("all" %in% reg) reg = x$name
+  
   if (tolower(form[1]) == 'table'){
-    x <- get_table() %>%
-      dplyr::filter(.data$name %in% reg)
+    x <- x |>
+           dplyr::filter(.data$name %in% reg)
   } else if (tolower(form[1]) == "bb"){
-    if (length(reg) > 1){
-      x <- sapply(reg, get_bb, form = 'bb', simplify = FALSE)
-    } else {
-      x <- get_table() %>%
-        dplyr::filter(.data$name %in% reg) %>%
-        dplyr::select(-.data$name, -.data$longname) %>%
-        unlist()
-    }
+    x = x |>
+      dplyr::select(-.data$name, -.data$longname) 
+    
+    #if (length(reg) > 1){
+    #  x <- sapply(reg, get_bb, form = 'bb', simplify = FALSE)
+    #} else {
+    #  x <- get_table() 
+    #  if (!("all" %in% reg)) x = x |>
+    #                             dplyr::filter(.data$name %in% reg)
+    #  x = x |>
+    #    dplyr::select(-.data$name, -.data$longname) %>%
+    #    unlist()
+    #}
   } else {
     # must be 'sf'
+    as_vec = function(x){
+      c(xmin = x$xmin, ymin = x$ymin, xmax = x$xmax, ymax = x$ymax )
+    }
     x <- lapply(reg, 
-      function(r) {
-        b <- get_bb(r, form = 'bb')
+      function(r, data = NULL) {
+        b = dplyr::filter(data, name == r) |>
+          as_vec()
+          
         sf::st_sf(name = r,
                   geom = sf::st_sfc(bb_as_POLYGON(b), crs = 4326))
-      }) |>
+      }, data = x) |>
       dplyr::bind_rows()
     
   }
