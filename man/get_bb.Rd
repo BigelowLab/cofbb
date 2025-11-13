@@ -13,7 +13,7 @@ By default 'world'.  Use all to retrieve all known bbs.}
 \item{form}{character, either 'bb', 'table' or 'sf'}
 }
 \value{
-4-element numeric vector, or a list of 4-element vectors,
+4-element numeric vector, or a named list of 4-element vectors,
         a table (tibble) or sf POLYGON table
 }
 \description{

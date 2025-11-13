@@ -4,7 +4,7 @@
 \alias{bb_as_POLYGON}
 \title{Convert a 4 element bb vector into a polygon}
 \usage{
-bb_as_POLYGON(x)
+bb_as_POLYGON(x = c(xmin = -180, ymin = -90, xmax = 180, ymax = 90))
 }
 \arguments{
 \item{x}{4 element numeric bounding box}

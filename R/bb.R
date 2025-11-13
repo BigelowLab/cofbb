@@ -13,7 +13,7 @@ get_table <- function(filename = system.file("bbox_lonlat.csv",
 #' @param reg character, one or more named regions to retrieve.
 #'             By default 'world'.  Use all to retrieve all known bbs.
 #' @param form character, either 'bb', 'table' or 'sf'
-#' @return 4-element numeric vector, or a list of 4-element vectors,
+#' @return 4-element numeric vector, or a named list of 4-element vectors,
 #'         a table (tibble) or sf POLYGON table
 get_bb <- function(reg, form = c("table", "bb", "sf")[2]){
   
@@ -31,6 +31,8 @@ get_bb <- function(reg, form = c("table", "bb", "sf")[2]){
     x <- x |>
            dplyr::filter(.data$name %in% reg)
   } else if (tolower(form[1]) == "bb"){
+    x <- x |>
+      dplyr::filter(.data$name %in% reg)
     nms = x$name
     x = x |>
       dplyr::rowwise() |>
@@ -39,6 +41,9 @@ get_bb <- function(reg, form = c("table", "bb", "sf")[2]){
           as_vec(grp)
         } ) |>
       rlang::set_names(nms)
+    
+    if (length(x) == 1) x = x[[1]]
+    
   } else {
     # must be 'sf'
    
@@ -61,10 +66,21 @@ get_bb <- function(reg, form = c("table", "bb", "sf")[2]){
 #' @export
 #' @param x 4 element numeric bounding box
 #' @return \code{POLYGON} object
-bb_as_POLYGON <- function(x){
+bb_as_POLYGON <- function(x = c(xmin = -180, ymin = -90, xmax = 180, ymax = 90)){
   if (!inherits(x, "numeric")) stop("inpt must be 4 element numeric vector")
-  if (length(x) != 4) stop("input must have 4 elements")
-  m <- matrix(x[c(1,2,2,1,1,3,3,4,4,3)], ncol = 2)
+  if (length(x) < 4) stop("input must have 4 elements")
+  if (!all(c("xmin", "ymin", "xmax", "ymax") %in% names(x)))
+    stop('input must have c("xmin", "ymin", "xmax", "ymax")')
+  p = sf::st_bbox(x) |>
+    sf::st_as_sfc(x) |>
+    sf::st_cast("POLYGON")
+  #m <- matrix(x[c(1,2,2,1,1,3,3,4,4,3)], ncol = 2)
+  m = matrix(x[c("xmin", "ymin",
+                 "xmax", "ymin",
+                 "xmax", "ymax",
+                 "xmin", "ymax",
+                 "xmin", "ymin")], 
+             byrow = TRUE, ncol = 2)
   sf::st_polygon(list(m))
 }
 
